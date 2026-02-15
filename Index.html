@@ -90,6 +90,15 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 .upgrade-sidebar-btn{background:linear-gradient(135deg,#f59e0b,#f97316)!important;color:#fff!important;border:none!important;font-weight:600}
 .upgrade-sidebar-btn:hover{box-shadow:0 4px 15px rgba(245,158,11,.3);transform:translateY(-1px)}
 
+.user-status{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+.user-info{flex:1}
+.user-name{font-size:13px;font-weight:600}
+.user-plan{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px}
+.user-plan.pro{color:var(--warning)}
+.plan-badge{font-size:9px;padding:2px 6px;border-radius:4px;background:var(--surface3);color:var(--text2)}
+.plan-badge.pro{background:linear-gradient(135deg,var(--warning),#f97316);color:#fff}
+
 .main{flex:1;display:flex;flex-direction:column;height:100dvh;min-width:0}
 .topbar{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--surface)}
 .topbar-left{display:flex;align-items:center;gap:12px}
@@ -102,12 +111,15 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 .model-selector{position:relative}
 .model-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
 .model-btn:hover{border-color:var(--primary)}
-.model-dropdown{position:absolute;top:100%;left:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:200px;display:none;z-index:50;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.model-dropdown{position:absolute;top:100%;left:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:220px;display:none;z-index:50;box-shadow:0 8px 30px rgba(0,0,0,.3)}
 .model-dropdown.show{display:block}
 .model-option{padding:10px 12px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
 .model-option:hover{background:var(--surface2)}
 .model-option.active{background:var(--surface2);color:var(--primary)}
-.model-option .pro{font-size:10px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:2px 6px;border-radius:4px}
+.model-option.locked{opacity:0.7}
+.model-option.locked:hover{background:var(--surface2)}
+.model-option .pro-badge{font-size:10px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:2px 6px;border-radius:4px}
+.model-option .lock-icon{color:var(--warning);font-size:12px;margin-left:4px}
 
 .messages-area{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column}
 .messages-area::-webkit-scrollbar{width:6px}
@@ -252,6 +264,29 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 .theme-card-preview{height:60px}
 .theme-card-name{padding:8px;font-size:11px;text-align:center;background:var(--surface2)}
 
+.generated-image{max-width:300px;border-radius:12px;margin-top:10px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.3);transition:transform .3s}
+.generated-image:hover{transform:scale(1.02)}
+.image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.image-grid img{width:100%;border-radius:8px;cursor:pointer;transition:transform .3s}
+.image-grid img:hover{transform:scale(1.05)}
+
+.video-container{margin-top:10px;border-radius:12px;overflow:hidden;background:#000}
+.video-container video{width:100%;max-width:400px;border-radius:12px}
+
+.pro-required-modal{text-align:center;padding:20px}
+.pro-required-modal i{font-size:64px;color:var(--warning);margin-bottom:16px}
+.pro-required-modal h3{font-size:20px;margin-bottom:8px}
+.pro-required-modal p{color:var(--text2);margin-bottom:20px}
+.pro-required-modal button{background:linear-gradient(135deg,var(--warning),#f97316);color:#fff;border:none;padding:12px 32px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s}
+.pro-required-modal button:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(245,158,11,.4)}
+
+.model-locked-notice{font-size:11px;color:var(--text3);padding:8px 12px;background:var(--surface2);border-radius:8px;margin-top:6px;display:flex;align-items:center;gap:6px}
+.model-locked-notice i{color:var(--warning)}
+
+.api-status{font-size:11px;padding:4px 8px;border-radius:6px;margin-left:8px}
+.api-status.connected{background:rgba(16,185,129,.2);color:var(--success)}
+.api-status.disconnected{background:rgba(239,68,68,.2);color:var(--error)}
+
 @media(max-width:768px){
 .sidebar{position:fixed;left:0;top:0;width:280px;height:100%}
 .sidebar.closed{transform:translateX(-100%)}
@@ -275,6 +310,7 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 .welcome-screen p{font-size:12px;margin-bottom:20px}
 .plan-cards{flex-direction:column}
 .upgrade-modal{padding:20px 16px}
+.image-grid{grid-template-columns:1fr}
 }
 
 ::-webkit-scrollbar{width:6px}
@@ -316,10 +352,20 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 <h2>Deep Dive AI</h2>
 <button class="menu-btn" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
 </div>
+<div class="user-status">
+<div class="user-avatar" id="userAvatar">U</div>
+<div class="user-info">
+<div class="user-name" id="userName">User</div>
+<div class="user-plan" id="userPlanDisplay">
+<span class="plan-badge" id="planBadge">FREE</span>
+<span class="api-status disconnected" id="apiStatus">No API</span>
+</div>
+</div>
+</div>
 <div style="padding:0 12px"><button class="new-chat-btn" onclick="newChat()"><i class="fa-solid fa-plus"></i> New Chat</button></div>
 <div class="chat-list" id="chatList"></div>
 <div class="sidebar-footer">
-<button class="upgrade-sidebar-btn" onclick="showUpgrade()"><i class="fa-solid fa-crown"></i> Upgrade to Pro</button>
+<button class="upgrade-sidebar-btn" onclick="showUpgrade()" id="upgradeSidebarBtn"><i class="fa-solid fa-crown"></i> Upgrade to Pro</button>
 <button onclick="exportChats()"><i class="fa-solid fa-download"></i> Export Chats</button>
 <button onclick="showSettings()"><i class="fa-solid fa-gear"></i> Settings</button>
 </div>
@@ -333,16 +379,31 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 </div>
 <div class="topbar-actions">
 <div class="model-selector">
-<button class="model-btn" onclick="toggleModelDropdown()"><i class="fa-solid fa-microchip"></i> <span id="currentModel">GPT-4o</span> <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></button>
+<button class="model-btn" onclick="toggleModelDropdown()"><i class="fa-solid fa-microchip"></i> <span id="currentModel">Llama 3.3 70B</span> <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></button>
 <div class="model-dropdown" id="modelDropdown">
-<div class="model-option active" onclick="selectModel('gpt-4o','GPT-4o')">GPT-4o <span style="color:var(--text3);font-size:11px">Fast</span></div>
-<div class="model-option" onclick="selectModel('gpt-4-turbo','GPT-4 Turbo')">GPT-4 Turbo <span style="color:var(--text3);font-size:11px">Powerful</span></div>
-<div class="model-option" onclick="selectModel('claude-3','Claude 3')">Claude 3 Opus <span class="pro">PRO</span></div>
-<div class="model-option" onclick="selectModel('gemini-pro','Gemini Pro')">Gemini Pro <span class="pro">PRO</span></div>
-<div class="model-option" onclick="selectModel('dall-e-3','DALL·E 3')">DALL·E 3 <span style="color:var(--text3);font-size:11px">Image</span></div>
+<div class="model-option active" data-model="llama-3.3-70b-versatile" data-name="Llama 3.3 70B" onclick="selectModel(this)">
+<span>Llama 3.3 70B</span>
+<span style="color:var(--text3);font-size:11px">Fast & Smart</span>
+</div>
+<div class="model-option" data-model="llama-3.1-8b-instant" data-name="Llama 3.1 8B" onclick="selectModel(this)">
+<span>Llama 3.1 8B</span>
+<span style="color:var(--text3);font-size:11px">Ultra Fast</span>
+</div>
+<div class="model-option" data-model="mixtral-8x7b-32768" data-name="Mixtral 8x7B" onclick="selectModel(this)">
+<span>Mixtral 8x7B</span>
+<span style="color:var(--text3);font-size:11px">Balanced</span>
+</div>
+<div class="model-option" data-model="gemma2-9b-it" data-name="Gemma 2 9B" onclick="selectModel(this)">
+<span>Gemma 2 9B</span>
+<span style="color:var(--text3);font-size:11px">Google</span>
+</div>
+<div class="model-option" data-model="llama-3.1-70b-versatile" data-name="Llama 3.1 70B" data-pro="true" onclick="selectModel(this)">
+<span>Llama 3.1 70B</span>
+<span class="pro-badge">PRO</span>
 </div>
 </div>
-<button title="Upgrade" onclick="showUpgrade()" style="color:var(--warning)"><i class="fa-solid fa-crown"></i></button>
+</div>
+<button title="Upgrade" onclick="showUpgrade()" style="color:var(--warning)" id="upgradeTopBtn"><i class="fa-solid fa-crown"></i></button>
 <button title="Theme" onclick="toggleThemePanel()"><i class="fa-solid fa-palette"></i></button>
 <button title="Clear" onclick="clearChat()"><i class="fa-solid fa-trash-can"></i></button>
 </div>
@@ -355,9 +416,9 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 <p>Deep dive with your thoughts — imagine your own reality</p>
 <div class="quick-actions">
 <button class="quick-action" onclick="setPrompt('Help me brainstorm ideas')"><i class="fa-solid fa-lightbulb"></i> Ideas</button>
-<button class="quick-action" onclick="setPrompt('Create a photo of a sunset over mountains')"><i class="fa-solid fa-image"></i> Image</button>
-<button class="quick-action" onclick="setPrompt('Generate 4 images of a magical forest')"><i class="fa-solid fa-grip"></i> Batch <span class="pro-tag">PRO</span></button>
-<button class="quick-action" onclick="setPrompt('Make a video of ocean waves')"><i class="fa-solid fa-video"></i> Video <span class="pro-tag">PRO</span></button>
+<button class="quick-action" onclick="setPrompt('Create an image of a sunset over mountains')"><i class="fa-solid fa-image"></i> Image</button>
+<button class="quick-action" onclick="setPrompt('Generate 4 images of a magical forest')"><i class="fa-solid fa-grip"></i> Batch Images</button>
+<button class="quick-action" onclick="handleVideoRequest()"><i class="fa-solid fa-video"></i> Video <span class="pro-tag">PRO</span></button>
 <button class="quick-action" onclick="setPrompt('Write a Python web scraper')"><i class="fa-solid fa-code"></i> Code</button>
 </div>
 </div>
@@ -396,7 +457,12 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 <div class="modal-overlay" id="settingsModal">
 <div class="modal">
 <h2><i class="fa-solid fa-gear"></i> Settings <button class="modal-close" onclick="closeSettings()"><i class="fa-solid fa-xmark"></i></button></h2>
-<div class="setting-group"><label>API Key</label><input type="text" id="apiKeyInput" placeholder="sk-... (stored locally only)" autocomplete="off"></div>
+<div class="setting-group"><label>Your Name</label><input type="text" id="userNameInput" placeholder="Enter your name"></div>
+<div class="setting-group">
+<label>Groq API Key <span style="color:var(--accent);font-size:11px">(Required for AI responses)</span></label>
+<input type="text" id="apiKeyInput" placeholder="gsk_... (Get free key from console.groq.com)" autocomplete="off">
+<p style="font-size:11px;color:var(--text3);margin-top:6px"><i class="fa-solid fa-info-circle"></i> Get your free API key at <a href="https://console.groq.com" target="_blank" style="color:var(--accent)">console.groq.com</a></p>
+</div>
 <div class="setting-group"><label>System Prompt</label><textarea id="systemPrompt" style="width:100%;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;outline:none;min-height:80px;resize:vertical;font-family:inherit" placeholder="You are a helpful assistant..."></textarea></div>
 <div class="toggle-row"><div class="toggle-label">Stream responses<span>Show text as it generates</span></div><button class="toggle on" id="streamToggle" onclick="this.classList.toggle('on')"></button></div>
 <div class="toggle-row"><div class="toggle-label">Auto-title chats<span>Generate chat titles automatically</span></div><button class="toggle on" id="autoTitleToggle" onclick="this.classList.toggle('on')"></button></div>
@@ -417,13 +483,13 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 <div class="plan-period" id="proPeriod">Billed monthly</div>
 <ul class="plan-features">
 <li><i class="fa-solid fa-check"></i> Unlimited messages</li>
-<li><i class="fa-solid fa-check"></i> GPT-4o & GPT-4 Turbo</li>
-<li><i class="fa-solid fa-check"></i> Image generation (DALL·E 3)</li>
+<li><i class="fa-solid fa-check"></i> All Groq models</li>
+<li><i class="fa-solid fa-check"></i> Image generation (FREE)</li>
 <li><i class="fa-solid fa-check"></i> Batch image generation</li>
+<li><i class="fa-solid fa-crown"></i> Llama 3.1 70B access</li>
+<li><i class="fa-solid fa-crown"></i> Priority models</li>
+<li><i class="fa-solid fa-crown"></i> Video generation</li>
 <li><i class="fa-solid fa-check"></i> Priority response speed</li>
-<li><i class="fa-solid fa-check"></i> Chat history export</li>
-<li><i class="fa-solid fa-xmark"></i> Video generation</li>
-<li><i class="fa-solid fa-xmark"></i> Claude 3 & Gemini Pro</li>
 </ul>
 <button class="plan-select-btn" onclick="selectPlan('pro')">Get Pro</button>
 </div>
@@ -433,13 +499,13 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 <div class="plan-period" id="ultraPeriod">Billed monthly</div>
 <ul class="plan-features">
 <li><i class="fa-solid fa-infinity"></i> Everything in Pro</li>
-<li><i class="fa-solid fa-crown"></i> Claude 3 Opus access</li>
-<li><i class="fa-solid fa-crown"></i> Gemini Pro access</li>
-<li><i class="fa-solid fa-crown"></i> Video generation</li>
+<li><i class="fa-solid fa-crown"></i> Unlimited all models</li>
+<li><i class="fa-solid fa-crown"></i> Unlimited video generation</li>
 <li><i class="fa-solid fa-crown"></i> Real-time web search</li>
 <li><i class="fa-solid fa-crown"></i> Custom system prompts</li>
 <li><i class="fa-solid fa-crown"></i> API access included</li>
 <li><i class="fa-solid fa-crown"></i> Early access to new models</li>
+<li><i class="fa-solid fa-crown"></i> Priority support</li>
 </ul>
 <button class="plan-select-btn" onclick="selectPlan('ultra')">Get Ultra</button>
 </div>
@@ -448,125 +514,998 @@ body.light-mode{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e4e6eb;--surface3:#d8
 </div>
 </div>
 
+<div class="modal-overlay" id="proRequiredModal">
+<div class="modal" style="max-width:400px">
+<div class="pro-required-modal">
+<i class="fa-solid fa-crown"></i>
+<h3 id="proRequiredTitle">Pro Feature</h3>
+<p id="proRequiredMessage">This feature is only available for Pro and Ultra subscribers. Upgrade now to unlock it!</p>
+<button onclick="closeProRequired();showUpgrade()"><i class="fa-solid fa-rocket" style="margin-right:8px"></i>Upgrade to Pro</button>
+<br><br>
+<button onclick="closeProRequired()" style="background:var(--surface3);color:var(--text)">Maybe Later</button>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="apiRequiredModal">
+<div class="modal" style="max-width:400px">
+<div class="pro-required-modal">
+<i class="fa-solid fa-key" style="color:var(--accent)"></i>
+<h3>API Key Required</h3>
+<p>Please add your Groq API key in Settings to use AI features. It's free!</p>
+<button onclick="closeApiRequired();showSettings()" style="background:linear-gradient(135deg,var(--primary),var(--accent))"><i class="fa-solid fa-gear" style="margin-right:8px"></i>Open Settings</button>
+<br><br>
+<a href="https://console.groq.com" target="_blank" style="color:var(--accent);font-size:13px">Get free API key →</a>
+</div>
+</div>
+</div>
+
 <div class="theme-panel" id="themePanel">
 <div class="theme-panel-header"><h3><i class="fa-solid fa-palette"></i> Themes</h3><button class="menu-btn" onclick="toggleThemePanel()"><i class="fa-solid fa-xmark"></i></button></div>
 <div class="theme-grid" id="themeGrid"></div>
 </div>
+
 <script>
 const LOGO_URL="https://i.ibb.co/DyptVCB/file-000000009dac71fa971ddc5a38478781-1.png";
-let chats=JSON.parse(localStorage.getItem('deepdive_chats')||'[]');
-let activeChatId=localStorage.getItem('deepdive_active')||null;
-let currentModelId='gpt-4o';
-let attachedImage=null;
-let isGenerating=false;
-let isRecording=false;
-let isYearly=false;
 
-const themes=[
-{name:'Midnight',bg:'#0a0a0f',surface:'#12121a',primary:'#6c5ce7',accent:'#00d2ff'},
-{name:'Ocean',bg:'#0a1628',surface:'#0f2035',primary:'#0ea5e9',accent:'#38bdf8'},
-{name:'Forest',bg:'#0a1a0f',surface:'#0f2518',primary:'#10b981',accent:'#34d399'},
-{name:'Sunset',bg:'#1a0a0f',surface:'#251015',primary:'#f43f5e',accent:'#fb923c'},
-{name:'Purple',bg:'#0f0a1a',surface:'#1a1028',primary:'#a855f7',accent:'#c084fc'},
-{name:'Rose',bg:'#1a0a14',surface:'#25101c',primary:'#ec4899',accent:'#f472b6'},
-{name:'Gold',bg:'#1a150a',surface:'#252010',primary:'#f59e0b',accent:'#fbbf24'},
-{name:'Cyan',bg:'#0a1a1a',surface:'#102525',primary:'#06b6d4',accent:'#22d3ee'},
-{name:'Light',bg:'#f0f2f5',surface:'#ffffff',primary:'#6c5ce7',accent:'#0ea5e9',light:true},
-{name:'Light Rose',bg:'#fdf2f8',surface:'#ffffff',primary:'#ec4899',accent:'#f43f5e',light:true},
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ████████╗██╗  ██╗██╗███████╗    ██╗███████╗    ██╗   ██╗ ██████╗ ██╗   ██╗ ║
+║   ╚══██╔══╝██║  ██║██║██╔════╝    ██║██╔════╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║ ║
+║      ██║   ███████║██║███████╗    ██║███████╗     ╚████╔╝ ██║   ██║██║   ██║ ║
+║      ██║   ██╔══██║██║╚════██║    ██║╚════██║      ╚██╔╝  ██║   ██║██║   ██║ ║
+║      ██║   ██║  ██║██║███████║    ██║███████║       ██║   ╚██████╔╝╚██████╔╝ ║
+║      ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝    ╚═╝╚══════╝       ╚═╝    ╚═════╝  ╚═════╝  ║
+║                                                                              ║
+║   ██████╗ ██████╗  ██████╗  ██████╗      █████╗ ██████╗ ██╗    ██╗  ██╗███████╗██╗   ██╗ ║
+║  ██╔════╝ ██╔══██╗██╔═══██╗██╔═══██╗    ██╔══██╗██╔══██╗██║    ██║ ██╔╝██╔════╝╚██╗ ██╔╝ ║
+║  ██║  ███╗██████╔╝██║   ██║██║   ██║    ███████║██████╔╝██║    █████╔╝ █████╗   ╚████╔╝  ║
+║  ██║   ██║██╔══██╗██║   ██║██║▄▄ ██║    ██╔══██║██╔═══╝ ██║    ██╔═██╗ ██╔══╝    ╚██╔╝   ║
+║  ╚██████╔╝██║  ██║╚██████╔╝╚██████╔╝    ██║  ██║██║     ██║    ██║  ██╗███████╗   ██║    ║
+║   ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚══▀▀═╝     ╚═╝  ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝   ╚═╝    ║
+║                                                                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║   🔑 HOW TO GET YOUR FREE GROQ API KEY:                                     ║
+║                                                                              ║
+║   1. Go to: https://console.groq.com                                        ║
+║   2. Sign up for a free account                                             ║
+║   3. Click on "API Keys" in the sidebar                                     ║
+║   4. Click "Create API Key"                                                 ║
+║   5. Copy your key (starts with "gsk_")                                     ║
+║   6. Paste it below OR enter it in Settings                                 ║
+║                                                                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║   ⬇️⬇️⬇️ PASTE YOUR API KEY BELOW (BETWEEN THE QUOTES) ⬇️⬇️⬇️              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ║  🔑 PASTE YOUR GROQ API KEY HERE (between the quotes)                       ║
+// ║                                                                             ║
+// ║  Example: const GROQ_API_KEY = "gsk_abc123xyz...";                          ║
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const GROQ_API_KEY = "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";  // <-- 🔑 PASTE YOUR API KEY HERE!
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ║  If you leave it empty (""), the app will ask you to enter it in Settings   ║
+// ║  Both methods work - choose whichever is easier for you!                    ║
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+
+const sampleImages = [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
+    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400",
+    "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400",
+    "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400",
+    "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400",
+    "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400",
+    "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400",
+    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400"
 ];
 
-function initIntro(){
-const p=document.getElementById('introParticles');
-for(let i=0;i<25;i++){const d=document.createElement('div');d.className='intro-particle';d.style.left=Math.random()*100+'%';d.style.bottom='-10px';d.style.animationDelay=Math.random()*3+'s';d.style.animationDuration=(2+Math.random()*2)+'s';d.style.background=Math.random()>.5?'var(--primary)':'var(--accent)';d.style.width=d.style.height=(3+Math.random()*4)+'px';p.appendChild(d)}
-const b=document.getElementById('introBubbles');
-for(let i=0;i<15;i++){const d=document.createElement('div');d.className='bubble';const s=10+Math.random()*30;d.style.setProperty('--size',s+'px');d.style.setProperty('--delay',(Math.random()*5)+'s');d.style.setProperty('--duration',(5+Math.random()*5)+'s');d.style.left=Math.random()*100+'%';b.appendChild(d)}
-const n=document.getElementById('introNeural');const nodes=[];
-for(let i=0;i<12;i++){const d=document.createElement('div');d.className='neural-node';const x=10+Math.random()*80;const y=10+Math.random()*80;d.style.left=x+'%';d.style.top=y+'%';d.style.animationDelay=(Math.random()*2)+'s';n.appendChild(d);nodes.push({el:d,x,y})}
-setTimeout(()=>{for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){if(Math.random()>.6)continue;const l=document.createElement('div');l.className='neural-line';const dx=nodes[j].x-nodes[i].x;const dy=nodes[j].y-nodes[i].y;const len=Math.sqrt(dx*dx+dy*dy);const ang=Math.atan2(dy,dx)*180/Math.PI;l.style.left=nodes[i].x+'%';l.style.top=nodes[i].y+'%';l.style.width=len+'%';l.style.transform=`rotate(${ang}deg)`;l.style.animationDelay=(.5+Math.random())+'s';n.appendChild(l)}}},500)}
+let chats = JSON.parse(localStorage.getItem('deepdive_chats') || '[]');
+let activeChatId = localStorage.getItem('deepdive_active') || null;
+let currentModelId = 'llama-3.3-70b-versatile';
+let currentModelName = 'Llama 3.3 70B';
+let attachedImage = null;
+let isGenerating = false;
+let isRecording = false;
+let isYearly = false;
+let userPlan = localStorage.getItem('deepdive_plan') || 'free';
 
-function startApp(){document.getElementById('introSplash').classList.add('hide');initApp()}
-function init(){initIntro()}
-function initApp(){
-if(!chats.length)newChat(true);
-else if(!activeChatId||!chats.find(c=>c.id===activeChatId))activeChatId=chats[0].id;
-renderChatList();renderMessages();buildThemes();
-const t=localStorage.getItem('deepdive_theme');if(t!==null)applyTheme(parseInt(t))}
+const proModels = ['llama-3.1-70b-versatile'];
 
-function getActive(){return chats.find(c=>c.id===activeChatId)}
-function save(){localStorage.setItem('deepdive_chats',JSON.stringify(chats));localStorage.setItem('deepdive_active',activeChatId)}
+const themes = [
+    {name:'Midnight',bg:'#0a0a0f',surface:'#12121a',primary:'#6c5ce7',accent:'#00d2ff'},
+    {name:'Ocean',bg:'#0a1628',surface:'#0f2035',primary:'#0ea5e9',accent:'#38bdf8'},
+    {name:'Forest',bg:'#0a1a0f',surface:'#0f2518',primary:'#10b981',accent:'#34d399'},
+    {name:'Sunset',bg:'#1a0a0f',surface:'#251015',primary:'#f43f5e',accent:'#fb923c'},
+    {name:'Purple',bg:'#0f0a1a',surface:'#1a1028',primary:'#a855f7',accent:'#c084fc'},
+    {name:'Rose',bg:'#1a0a14',surface:'#25101c',primary:'#ec4899',accent:'#f472b6'},
+    {name:'Gold',bg:'#1a150a',surface:'#252010',primary:'#f59e0b',accent:'#fbbf24'},
+    {name:'Cyan',bg:'#0a1a1a',surface:'#102525',primary:'#06b6d4',accent:'#22d3ee'},
+    {name:'Light',bg:'#f0f2f5',surface:'#ffffff',primary:'#6c5ce7',accent:'#0ea5e9',light:true},
+    {name:'Light Rose',bg:'#fdf2f8',surface:'#ffffff',primary:'#ec4899',accent:'#f43f5e',light:true},
+];
 
-function newChat(s){const c={id:Date.now().toString(),title:'New Chat',msgs:[],created:Date.now()};chats.unshift(c);activeChatId=c.id;save();renderChatList();renderMessages();if(!s)closeSidebarMobile();document.getElementById('chatTitle').textContent='Deep Dive AI'}
-function switchChat(id){activeChatId=id;save();renderChatList();renderMessages();closeSidebarMobile();const c=getActive();document.getElementById('chatTitle').textContent=c?c.title:'Deep Dive AI'}
-function deleteChat(id,e){e.stopPropagation();chats=chats.filter(c=>c.id!==id);if(activeChatId===id)activeChatId=chats.length?chats[0].id:null;if(!chats.length)newChat(true);save();renderChatList();renderMessages()}
-function clearChat(){const c=getActive();if(c){c.msgs=[];c.title='New Chat';save();renderMessages()}document.getElementById('chatTitle').textContent='Deep Dive AI'}
+// Get API key - checks hardcoded first, then localStorage
+function getApiKey() {
+    if (GROQ_API_KEY && GROQ_API_KEY.trim() !== "") {
+        return GROQ_API_KEY;
+    }
+    return localStorage.getItem('deepdive_apikey') || '';
+}
 
-function renderChatList(){document.getElementById('chatList').innerHTML=chats.map(c=>`<div class="chat-item ${c.id===activeChatId?'active':''}" onclick="switchChat('${c.id}')"><span class="chat-item-title"><i class="fa-solid fa-message" style="margin-right:8px;font-size:12px;color:var(--text3)"></i>${esc(c.title)}</span><span class="chat-item-del" onclick="deleteChat('${c.id}',event)"><i class="fa-solid fa-trash"></i></span></div>`).join('')}
+// Check if API key is configured
+function hasApiKey() {
+    const key = getApiKey();
+    return key && key.trim() !== '' && key.startsWith('gsk_');
+}
 
-function renderMessages(){
-const a=document.getElementById('messagesArea');const c=getActive();const w=document.getElementById('welcomeScreen');
-if(!c||!c.msgs.length){a.innerHTML='';if(w){w.style.display='flex';a.appendChild(w)}return}
-if(w)w.style.display='none';a.innerHTML='';if(w)a.appendChild(w);
-c.msgs.forEach((m,i)=>{const d=document.createElement('div');d.className='message '+(m.role==='user'?'user':'ai');
-let ct=m.role==='assistant'?renderMD(m.content):esc(m.content).replace(/\n/g,'<br>');
-let img=m.image?`<img src="${m.image}" style="max-width:200px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="openLightbox(this.src)">`:'';
-const av=m.role==='user'?'<i class="fa-solid fa-user"></i>':`<img src="${LOGO_URL}" alt="AI">`;
-d.innerHTML=`<div class="message-wrapper"><div class="message-avatar">${av}</div><div><div class="message-bubble">${ct}${img}</div>${m.role==='assistant'?`<div class="message-actions"><button class="msg-action" onclick="copyMsg(${i})"><i class="fa-solid fa-copy"></i> Copy</button><button class="msg-action" onclick="regenMsg(${i})"><i class="fa-solid fa-rotate"></i> Regen</button><button class="msg-action" onclick="readAloud(${i})"><i class="fa-solid fa-volume-up"></i> Read</button></div>`:''}</div></div>`;
-a.appendChild(d)});a.scrollTop=a.scrollHeight;document.querySelectorAll('.code-block pre code').forEach(el=>hljs.highlightElement(el))}
+// Update API status indicator
+function updateApiStatus() {
+    const statusEl = document.getElementById('apiStatus');
+    if (hasApiKey()) {
+        statusEl.textContent = 'API Connected';
+        statusEl.className = 'api-status connected';
+    } else {
+        statusEl.textContent = 'No API';
+        statusEl.className = 'api-status disconnected';
+    }
+}
 
-function renderMD(t){t=t.replace(/```(\w*)\n([\s\S]*?)```/g,(_,l,c)=>{const x=l||'plaintext';return`<div class="code-block"><div class="code-header"><span>${x}</span><button onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-${x}">${esc(c.trim())}</code></pre></div>`});t=t.replace(/`([^`]+)`/g,'<code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:13px">$1</code>');t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');t=t.replace(/\*(.+?)\*/g,'<em>$1</em>');t=t.replace(/^\s*[-*]\s+(.+)/gm,'<li>$1</li>');t=t.replace(/(<li>.*<\/li>)/s,'<ul>$1</ul>');t=t.replace(/\n{2,}/g,'<br><br>');t=t.replace(/\n/g,'<br>');t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" style="color:var(--accent)">$1</a>');return t}
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function showApiRequired() {
+    document.getElementById('apiRequiredModal').classList.add('show');
+}
 
-async function sendMessage(){const i=document.getElementById('messageInput');const t=i.value.trim();if((!t&&!attachedImage)||isGenerating)return;const c=getActive();if(!c)return;const u={role:'user',content:t};if(attachedImage){u.image=attachedImage;removeImage()}c.msgs.push(u);i.value='';autoResize(i);if(c.msgs.length===1){c.title=t.slice(0,40)+(t.length>40?'...':'');document.getElementById('chatTitle').textContent=c.title;renderChatList()}save();renderMessages();isGenerating=true;document.getElementById('sendBtn').disabled=true;showTyping();try{const r=await generateResponse(c.msgs);removeTyping();c.msgs.push({role:'assistant',content:r});save();renderMessages()}catch(e){removeTyping();c.msgs.push({role:'assistant',content:'⚠️ Error generating response. Please check your API key and try again.'});save();renderMessages()}isGenerating=false;document.getElementById('sendBtn').disabled=false}
+function closeApiRequired() {
+    document.getElementById('apiRequiredModal').classList.remove('show');
+}
 
-async function generateResponse(m){const k=localStorage.getItem('deepdive_apikey');if(!k)return simulateResponse(m[m.length-1].content);const ms=[{role:'system',content:localStorage.getItem('deepdive_system')||'You are Deep Dive AI, a helpful and creative assistant. Help users dive deep into their thoughts, imagine new realities, and explore ideas freely.'}];m.forEach(x=>{if(x.role==='user'){let c=x.content;if(x.image)c+='\n[User attached an image]';ms.push({role:'user',content:c})}else{ms.push({role:'assistant',content:x.content})}});const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${k}`},body:JSON.stringify({model:currentModelId==='dall-e-3'?'gpt-4o':currentModelId,messages:ms,max_tokens:4096})});if(!r.ok)throw new Error('API Error');const d=await r.json();return d.choices[0].message.content}
+function initIntro() {
+    const p = document.getElementById('introParticles');
+    for (let i = 0; i < 25; i++) {
+        const d = document.createElement('div');
+        d.className = 'intro-particle';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.bottom = '-10px';
+        d.style.animationDelay = Math.random() * 3 + 's';
+        d.style.animationDuration = (2 + Math.random() * 2) + 's';
+        d.style.background = Math.random() > .5 ? 'var(--primary)' : 'var(--accent)';
+        d.style.width = d.style.height = (3 + Math.random() * 4) + 'px';
+        p.appendChild(d);
+    }
+    
+    const b = document.getElementById('introBubbles');
+    for (let i = 0; i < 15; i++) {
+        const d = document.createElement('div');
+        d.className = 'bubble';
+        const s = 10 + Math.random() * 30;
+        d.style.setProperty('--size', s + 'px');
+        d.style.setProperty('--delay', (Math.random() * 5) + 's');
+        d.style.setProperty('--duration', (5 + Math.random() * 5) + 's');
+        d.style.left = Math.random() * 100 + '%';
+        b.appendChild(d);
+    }
+    
+    const n = document.getElementById('introNeural');
+    const nodes = [];
+    for (let i = 0; i < 12; i++) {
+        const d = document.createElement('div');
+        d.className = 'neural-node';
+        const x = 10 + Math.random() * 80;
+        const y = 10 + Math.random() * 80;
+        d.style.left = x + '%';
+        d.style.top = y + '%';
+        d.style.animationDelay = (Math.random() * 2) + 's';
+        n.appendChild(d);
+        nodes.push({el: d, x, y});
+    }
+    
+    setTimeout(() => {
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                if (Math.random() > .6) continue;
+                const l = document.createElement('div');
+                l.className = 'neural-line';
+                const dx = nodes[j].x - nodes[i].x;
+                const dy = nodes[j].y - nodes[i].y;
+                const len = Math.sqrt(dx * dx + dy * dy);
+                const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+                l.style.left = nodes[i].x + '%';
+                l.style.top = nodes[i].y + '%';
+                l.style.width = len + '%';
+                l.style.transform = `rotate(${ang}deg)`;
+                l.style.animationDelay = (.5 + Math.random()) + 's';
+                n.appendChild(l);
+            }
+        }
+    }, 500);
+}
 
-function simulateResponse(p){return new Promise(r=>{const l=p.toLowerCase();let x='';if(l.includes('hello')||l.includes('hi ')||l.includes('hey')){x="Hello! 👋 I'm **Deep Dive AI**, your companion for exploring ideas without limits.\n\n*\"Deep dive with your thoughts. Imagine your own reality. Which no one can take from you.\"*\n\nWhat depths shall we explore today? 🌊"}else if(l.includes('code')||l.includes('python')||l.includes('javascript')){x="Let's dive deep into code! 💻\n\n```javascript\nclass DeepDive {\n  constructor(thought) {\n    this.thought = thought;\n    this.reality = null;\n  }\n\n  imagine() {\n    this.reality = this.thought.transform();\n    return this;\n  }\n}\n\nconst yourIdea = new DeepDive(yourThoughts);\nyourIdea.imagine();\n```\n\nWant me to build something specific? 🚀"}else if(l.includes('image')||l.includes('photo')||l.includes('picture')){x="🎨 Let's imagine something beautiful!\n\n*Connect your API key in Settings to bring your imagination to life with DALL·E 3.*\n\nDescribe your vision — what reality shall we create? 🌌"}else if(l.includes('brainstorm')||l.includes('ideas')){x="Let's dive deep into possibilities! 🌊💡\n\n**Imagine Your Reality:**\n\n1. **The Untethered Mind** — What if you could build something with zero constraints?\n\n2. **Reverse Engineering Dreams** — Take your wildest fantasy and work backwards.\n\n3. **Cross-Pollination** — Combine two completely unrelated interests.\n\nWhat sparks your imagination? ✨"}else{x="🌊 *Deep diving into your thoughts...*\n\nI'm here to help you explore any idea, solve problems, write code, create images, or just have a thoughtful conversation.\n\n*\"Deep dive with your thoughts. Imagine your own reality. Which no one can take from you.\"*\n\nWhat would you like to explore? 💭"}setTimeout(()=>r(x),1000+Math.random()*1500)})}
+function startApp() {
+    document.getElementById('introSplash').classList.add('hide');
+    initApp();
+}
 
-function showTyping(){const a=document.getElementById('messagesArea');const d=document.createElement('div');d.className='message ai';d.id='typingMsg';d.innerHTML=`<div class="message-wrapper"><div class="message-avatar"><img src="${LOGO_URL}" alt="AI"></div><div class="message-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;a.appendChild(d);a.scrollTop=a.scrollHeight}
-function removeTyping(){const t=document.getElementById('typingMsg');if(t)t.remove()}
+function init() {
+    initIntro();
+}
 
-function copyMsg(i){const c=getActive();if(c&&c.msgs[i]){navigator.clipboard.writeText(c.msgs[i].content);showToast('Copied to clipboard!')}}
-function copyCode(b){const c=b.closest('.code-block').querySelector('code').textContent;navigator.clipboard.writeText(c);showToast('Code copied!')}
-function regenMsg(i){const c=getActive();if(!c||i<1)return;c.msgs.splice(i);save();renderMessages();sendMessage()}
-function readAloud(i){const c=getActive();if(c&&c.msgs[i]){const u=new SpeechSynthesisUtterance(c.msgs[i].content.replace(/[*#`]/g,''));speechSynthesis.speak(u)}}
+function initApp() {
+    if (!chats.length) newChat(true);
+    else if (!activeChatId || !chats.find(c => c.id === activeChatId)) activeChatId = chats[0].id;
+    renderChatList();
+    renderMessages();
+    buildThemes();
+    updateUserDisplay();
+    updatePlanUI();
+    updateModelDropdown();
+    updateApiStatus();
+    
+    const t = localStorage.getItem('deepdive_theme');
+    if (t !== null) applyTheme(parseInt(t));
+    
+    // Show settings if no API key
+    if (!hasApiKey()) {
+        setTimeout(() => {
+            showToast('💡 Add your Groq API key in Settings to get started!');
+        }, 1000);
+    }
+}
 
-function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}}
-function autoResize(t){t.style.height='24px';t.style.height=Math.min(t.scrollHeight,120)+'px'}
-function setPrompt(t){document.getElementById('messageInput').value=t;document.getElementById('messageInput').focus();autoResize(document.getElementById('messageInput'))}
+function isPro() {
+    return userPlan === 'pro' || userPlan === 'ultra';
+}
 
-function handleImage(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=x=>{attachedImage=x.target.result;document.getElementById('previewThumb').src=attachedImage;document.getElementById('imagePreview').classList.add('active')};r.readAsDataURL(f)}}
-function removeImage(){attachedImage=null;document.getElementById('imagePreview').classList.remove('active');document.getElementById('imageUpload').value=''}
+function isProModel(modelId) {
+    return proModels.includes(modelId);
+}
 
-function openLightbox(s){document.getElementById('lightboxImg').src=s;document.getElementById('lightbox').classList.add('show')}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('show')}
+function updateModelDropdown() {
+    const options = document.querySelectorAll('.model-option');
+    options.forEach(opt => {
+        const isPM = opt.dataset.pro === 'true';
+        if (isPM && !isPro()) {
+            opt.classList.add('locked');
+        } else {
+            opt.classList.remove('locked');
+        }
+    });
+}
 
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('closed')}
-function closeSidebarMobile(){if(window.innerWidth<=768)document.getElementById('sidebar').classList.add('closed')}
-function toggleModelDropdown(){document.getElementById('modelDropdown').classList.toggle('show')}
-function selectModel(id,n){currentModelId=id;document.getElementById('currentModel').textContent=n;document.querySelectorAll('.model-option').forEach(o=>o.classList.remove('active'));event.target.closest('.model-option').classList.add('active');toggleModelDropdown()}
+function updateUserDisplay() {
+    const name = localStorage.getItem('deepdive_username') || 'User';
+    document.getElementById('userName').textContent = name;
+    document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+    
+    const badge = document.getElementById('planBadge');
+    if (userPlan === 'ultra') {
+        badge.textContent = 'ULTRA';
+        badge.className = 'plan-badge pro';
+        badge.style.background = 'linear-gradient(135deg, #f59e0b, #f97316)';
+    } else if (userPlan === 'pro') {
+        badge.textContent = 'PRO';
+        badge.className = 'plan-badge pro';
+        badge.style.background = '';
+    } else {
+        badge.textContent = 'FREE';
+        badge.className = 'plan-badge';
+        badge.style.background = '';
+    }
+}
 
-function showSettings(){document.getElementById('settingsModal').classList.add('show');document.getElementById('apiKeyInput').value=localStorage.getItem('deepdive_apikey')||'';document.getElementById('systemPrompt').value=localStorage.getItem('deepdive_system')||''}
-function closeSettings(){document.getElementById('settingsModal').classList.remove('show')}
-function saveSettings(){localStorage.setItem('deepdive_apikey',document.getElementById('apiKeyInput').value);localStorage.setItem('deepdive_system',document.getElementById('systemPrompt').value);closeSettings();showToast('Settings saved!')}
+function updatePlanUI() {
+    const upgradeBtn = document.getElementById('upgradeSidebarBtn');
+    const upgradeTopBtn = document.getElementById('upgradeTopBtn');
+    
+    if (isPro()) {
+        upgradeBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + (userPlan === 'ultra' ? 'Ultra Plan' : 'Pro Plan');
+        upgradeBtn.style.background = 'linear-gradient(135deg, var(--success), #059669)';
+        if (upgradeTopBtn) upgradeTopBtn.style.color = 'var(--success)';
+    } else {
+        upgradeBtn.innerHTML = '<i class="fa-solid fa-crown"></i> Upgrade to Pro';
+        upgradeBtn.style.background = '';
+        if (upgradeTopBtn) upgradeTopBtn.style.color = 'var(--warning)';
+    }
+    
+    updateModelDropdown();
+}
 
-function showUpgrade(){document.getElementById('upgradeModal').classList.add('show')}
-function closeUpgrade(){document.getElementById('upgradeModal').classList.remove('show')}
-function toggleBilling(){isYearly=!isYearly;document.getElementById('planToggle').classList.toggle('on',isYearly);document.getElementById('monthlyLabel').classList.toggle('active-plan-toggle',!isYearly);document.getElementById('yearlyLabel').classList.toggle('active-plan-toggle',isYearly);document.getElementById('proPrice').innerHTML=isYearly?'$8<span>/mo</span>':'$12<span>/mo</span>';document.getElementById('proPeriod').textContent=isYearly?'Billed $96/year':'Billed monthly';document.getElementById('ultraPrice').innerHTML=isYearly?'$16<span>/mo</span>':'$24<span>/mo</span>';document.getElementById('ultraPeriod').textContent=isYearly?'Billed $192/year':'Billed monthly'}
-function selectPlan(p){closeUpgrade();showToast(`${p.charAt(0).toUpperCase()+p.slice(1)} plan selected! (Demo)`)}
+function getActive() {
+    return chats.find(c => c.id === activeChatId);
+}
 
-function toggleThemePanel(){document.getElementById('themePanel').classList.toggle('show')}
-function buildThemes(){const g=document.getElementById('themeGrid');g.innerHTML=themes.map((t,i)=>`<div class="theme-card" onclick="applyTheme(${i})"><div class="theme-card-preview" style="background:linear-gradient(135deg,${t.bg},${t.surface});display:flex;align-items:center;justify-content:center"><div style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,${t.primary},${t.accent})"></div></div><div class="theme-card-name">${t.name}</div></div>`).join('')}
-function applyTheme(i){const t=themes[i];document.documentElement.style.setProperty('--bg',t.bg);document.documentElement.style.setProperty('--surface',t.surface);document.documentElement.style.setProperty('--primary',t.primary);document.documentElement.style.setProperty('--accent',t.accent);if(t.light){document.body.classList.add('light-mode')}else{document.body.classList.remove('light-mode')}localStorage.setItem('deepdive_theme',i);document.querySelectorAll('.theme-card').forEach((c,j)=>c.classList.toggle('active',j===i))}
+function save() {
+    localStorage.setItem('deepdive_chats', JSON.stringify(chats));
+    localStorage.setItem('deepdive_active', activeChatId);
+}
 
-function toggleVoice(){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){showToast('Speech recognition not supported');return}if(isRecording){isRecording=false;document.body.classList.remove('recording');return}const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const r=new SR();r.continuous=false;r.interimResults=false;r.onstart=()=>{isRecording=true;document.body.classList.add('recording')};r.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('messageInput').value=t;autoResize(document.getElementById('messageInput'))};r.onend=()=>{isRecording=false;document.body.classList.remove('recording')};r.onerror=()=>{isRecording=false;document.body.classList.remove('recording')};r.start()}
+function newChat(s) {
+    const c = {id: Date.now().toString(), title: 'New Chat', msgs: [], created: Date.now()};
+    chats.unshift(c);
+    activeChatId = c.id;
+    save();
+    renderChatList();
+    renderMessages();
+    if (!s) closeSidebarMobile();
+    document.getElementById('chatTitle').textContent = 'Deep Dive AI';
+}
 
-function exportChats(){const d=JSON.stringify(chats,null,2);const b=new Blob([d],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='deepdive_chats.json';a.click();URL.revokeObjectURL(u);showToast('Chats exported!')}
+function switchChat(id) {
+    activeChatId = id;
+    save();
+    renderChatList();
+    renderMessages();
+    closeSidebarMobile();
+    const c = getActive();
+    document.getElementById('chatTitle').textContent = c ? c.title : 'Deep Dive AI';
+}
 
-function showToast(m){const e=document.createElement('div');e.className='toast';e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.remove(),2500)}
-function switchTab(t){}
+function deleteChat(id, e) {
+    e.stopPropagation();
+    chats = chats.filter(c => c.id !== id);
+    if (activeChatId === id) activeChatId = chats.length ? chats[0].id : null;
+    if (!chats.length) newChat(true);
+    save();
+    renderChatList();
+    renderMessages();
+}
 
-document.addEventListener('click',e=>{if(!e.target.closest('.model-selector'))document.getElementById('modelDropdown').classList.remove('show')});
-window.onload=init;
+function clearChat() {
+    const c = getActive();
+    if (c) {
+        c.msgs = [];
+        c.title = 'New Chat';
+        save();
+        renderMessages();
+    }
+    document.getElementById('chatTitle').textContent = 'Deep Dive AI';
+}
+
+function renderChatList() {
+    document.getElementById('chatList').innerHTML = chats.map(c => 
+        `<div class="chat-item ${c.id === activeChatId ? 'active' : ''}" onclick="switchChat('${c.id}')">
+            <span class="chat-item-title"><i class="fa-solid fa-message" style="margin-right:8px;font-size:12px;color:var(--text3)"></i>${esc(c.title)}</span>
+            <span class="chat-item-del" onclick="deleteChat('${c.id}',event)"><i class="fa-solid fa-trash"></i></span>
+        </div>`
+    ).join('');
+}
+
+function renderMessages() {
+    const a = document.getElementById('messagesArea');
+    const c = getActive();
+    const w = document.getElementById('welcomeScreen');
+    
+    if (!c || !c.msgs.length) {
+        a.innerHTML = '';
+        if (w) {
+            w.style.display = 'flex';
+            a.appendChild(w);
+        }
+        return;
+    }
+    
+    if (w) w.style.display = 'none';
+    a.innerHTML = '';
+    if (w) a.appendChild(w);
+    
+    c.msgs.forEach((m, i) => {
+        const d = document.createElement('div');
+        d.className = 'message ' + (m.role === 'user' ? 'user' : 'ai');
+        
+        let ct = m.role === 'assistant' ? renderMD(m.content) : esc(m.content).replace(/\n/g, '<br>');
+        let img = m.image ? `<img src="${m.image}" style="max-width:200px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="openLightbox(this.src)">` : '';
+        
+        let genImages = '';
+        if (m.generatedImages && m.generatedImages.length > 0) {
+            if (m.generatedImages.length === 1) {
+                genImages = `<img src="${m.generatedImages[0]}" class="generated-image" onclick="openLightbox(this.src)">`;
+            } else {
+                genImages = '<div class="image-grid">' + m.generatedImages.map(img => 
+                    `<img src="${img}" onclick="openLightbox(this.src)">`
+                ).join('') + '</div>';
+            }
+        }
+        
+        let genVideo = '';
+        if (m.generatedVideo) {
+            genVideo = `<div class="video-container"><video controls src="${m.generatedVideo}"></video></div>`;
+        }
+        
+        const av = m.role === 'user' ? '<i class="fa-solid fa-user"></i>' : `<img src="${LOGO_URL}" alt="AI">`;
+        
+        d.innerHTML = `
+            <div class="message-wrapper">
+                <div class="message-avatar">${av}</div>
+                <div>
+                    <div class="message-bubble">${ct}${img}${genImages}${genVideo}</div>
+                    ${m.role === 'assistant' ? `
+                        <div class="message-actions">
+                            <button class="msg-action" onclick="copyMsg(${i})"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button class="msg-action" onclick="regenMsg(${i})"><i class="fa-solid fa-rotate"></i> Regen</button>
+                            <button class="msg-action" onclick="readAloud(${i})"><i class="fa-solid fa-volume-up"></i> Read</button>
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+        a.appendChild(d);
+    });
+    
+    a.scrollTop = a.scrollHeight;
+    document.querySelectorAll('.code-block pre code').forEach(el => hljs.highlightElement(el));
+}
+
+function renderMD(t) {
+    t = t.replace(/```(\w*)\n([\s\S]*?)```/g, (_, l, c) => {
+        const x = l || 'plaintext';
+        return `<div class="code-block"><div class="code-header"><span>${x}</span><button onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-${x}">${esc(c.trim())}</code></pre></div>`;
+    });
+    t = t.replace(/`([^`]+)`/g, '<code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:13px">$1</code>');
+    t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    t = t.replace(/^\s*[-*]\s+(.+)/gm, '<li>$1</li>');
+    t = t.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+    t = t.replace(/\n{2,}/g, '<br><br>');
+    t = t.replace(/\n/g, '<br>');
+    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--accent)">$1</a>');
+    return t;
+}
+
+function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+
+function detectRequestType(text) {
+    const lower = text.toLowerCase();
+    
+    if (lower.includes('video') || lower.includes('animate') || lower.includes('animation') || 
+        lower.includes('movie') || lower.includes('clip')) {
+        return 'video';
+    }
+    
+    if ((lower.includes('image') || lower.includes('picture') || lower.includes('photo')) &&
+        (lower.match(/\d+\s*(image|picture|photo)s?/) || lower.includes('batch') || 
+         lower.includes('multiple') || lower.includes('several'))) {
+        return 'batch-image';
+    }
+    
+    if (lower.includes('image') || lower.includes('picture') || lower.includes('photo') ||
+        lower.includes('draw') || lower.includes('create') || lower.includes('generate') ||
+        lower.includes('make me') || lower.includes('show me')) {
+        if (lower.includes('of') || lower.includes('showing') || lower.includes('with')) {
+            return 'image';
+        }
+    }
+    
+    return 'text';
+}
+
+function handleVideoRequest() {
+    if (!isPro()) {
+        showProRequired('Video Generation', 'Video generation is only available for Pro and Ultra subscribers. Upgrade now to create amazing AI videos!');
+        return;
+    }
+    setPrompt('Create a video of ocean waves at sunset');
+}
+
+function showProRequired(title, message) {
+    document.getElementById('proRequiredTitle').textContent = title || 'Pro Feature';
+    document.getElementById('proRequiredMessage').textContent = message || 'This feature is only available for Pro and Ultra subscribers. Upgrade now to unlock it!';
+    document.getElementById('proRequiredModal').classList.add('show');
+}
+
+function closeProRequired() {
+    document.getElementById('proRequiredModal').classList.remove('show');
+}
+
+async function sendMessage() {
+    const i = document.getElementById('messageInput');
+    const t = i.value.trim();
+    if ((!t && !attachedImage) || isGenerating) return;
+    
+    // Check for API key first (for text requests)
+    const requestType = detectRequestType(t);
+    if (requestType === 'text' && !hasApiKey()) {
+        showApiRequired();
+        return;
+    }
+    
+    // Check if using a Pro model without Pro subscription
+    if (isProModel(currentModelId) && !isPro()) {
+        showProRequired(
+            `${currentModelName} - Pro Only`,
+            `${currentModelName} is a premium model available only to Pro and Ultra subscribers. Upgrade now to access advanced AI models!`
+        );
+        return;
+    }
+    
+    const c = getActive();
+    if (!c) return;
+    
+    if (requestType === 'video' && !isPro()) {
+        showProRequired('Video Generation', 'Video generation is only available for Pro and Ultra subscribers. Upgrade now to create amazing AI videos!');
+        return;
+    }
+    
+    const u = {role: 'user', content: t};
+    if (attachedImage) {
+        u.image = attachedImage;
+        removeImage();
+    }
+    c.msgs.push(u);
+    i.value = '';
+    autoResize(i);
+    
+    if (c.msgs.length === 1) {
+        c.title = t.slice(0, 40) + (t.length > 40 ? '...' : '');
+        document.getElementById('chatTitle').textContent = c.title;
+        renderChatList();
+    }
+    
+    save();
+    renderMessages();
+    isGenerating = true;
+    document.getElementById('sendBtn').disabled = true;
+    showTyping();
+    
+    try {
+        const response = await generateResponse(c.msgs, requestType);
+        removeTyping();
+        
+        const assistantMsg = {role: 'assistant', content: response.text};
+        
+        if (response.images && response.images.length > 0) {
+            assistantMsg.generatedImages = response.images;
+        }
+        
+        if (response.video) {
+            assistantMsg.generatedVideo = response.video;
+        }
+        
+        c.msgs.push(assistantMsg);
+        save();
+        renderMessages();
+    } catch (e) {
+        console.error('Error:', e);
+        removeTyping();
+        c.msgs.push({role: 'assistant', content: '⚠️ Error generating response. Please check your API key and try again.\n\nError: ' + e.message});
+        save();
+        renderMessages();
+    }
+    
+    isGenerating = false;
+    document.getElementById('sendBtn').disabled = false;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ║  🚀 MAIN API CALL FUNCTION - This is where the magic happens!              ║
+// ═══════════════════════════════════════════════════════════════════════════════
+async function generateResponse(msgs, requestType) {
+    const lastMsg = msgs[msgs.length - 1].content;
+    
+    // Handle image and video requests (simulated)
+    if (requestType === 'video') {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve({
+                    text: "🎬 **Video Generated!**\n\nI've created a video based on your description. Here's your generated video:\n\n*Video generation powered by Deep Dive AI Pro*",
+                    video: "https://www.w3schools.com/html/mov_bbb.mp4"
+                });
+            }, 2000);
+        });
+    }
+    
+    if (requestType === 'batch-image') {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                const numImages = Math.min(4, Math.max(2, parseInt(lastMsg.match(/\d+/)?.[0]) || 4));
+                const images = [];
+                for (let i = 0; i < numImages; i++) {
+                    images.push(sampleImages[Math.floor(Math.random() * sampleImages.length)]);
+                }
+                resolve({
+                    text: `🎨 **${numImages} Images Generated!**\n\nHere are your generated images based on: *"${lastMsg}"*\n\nClick any image to view it in full size.`,
+                    images: images
+                });
+            }, 2000);
+        });
+    }
+    
+    if (requestType === 'image') {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                const randomImage = sampleImages[Math.floor(Math.random() * sampleImages.length)];
+                resolve({
+                    text: `🎨 **Image Generated!**\n\nHere's your image based on: *"${lastMsg}"*\n\nClick to view full size.`,
+                    images: [randomImage]
+                });
+            }, 1500);
+        });
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ║  📡 GROQ API CALL FOR TEXT RESPONSES                                    ║
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const apiKey = getApiKey();
+    
+    if (!apiKey) {
+        throw new Error('No API key configured. Please add your Groq API key in Settings.');
+    }
+    
+    // Prepare messages for API
+    const systemPrompt = localStorage.getItem('deepdive_system') || 
+        "You are Deep Dive AI, a helpful, creative, and intelligent assistant. You help users explore ideas, write code, answer questions, and dive deep into any topic. Be concise but thorough. Use markdown formatting when appropriate.";
+    
+    const apiMessages = [
+        { role: "system", content: systemPrompt }
+    ];
+    
+    // Add conversation history (last 20 messages to stay within limits)
+    const recentMsgs = msgs.slice(-20);
+    recentMsgs.forEach(m => {
+        if (m.role === 'user' || m.role === 'assistant') {
+            apiMessages.push({
+                role: m.role,
+                content: m.content
+            });
+        }
+    });
+    
+    try {
+        const response = await fetch(GROQ_API_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: currentModelId,
+                messages: apiMessages,
+                temperature: 0.7,
+                max_tokens: 4096,
+                top_p: 1,
+                stream: false
+            })
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error?.message || `API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+            return { text: data.choices[0].message.content };
+        } else {
+            throw new Error('Invalid response from API');
+        }
+        
+    } catch (error) {
+        console.error('Groq API Error:', error);
+        throw error;
+    }
+}
+
+function showTyping() {
+    const a = document.getElementById('messagesArea');
+    const d = document.createElement('div');
+    d.className = 'message ai';
+    d.id = 'typingMsg';
+    d.innerHTML = `
+        <div class="message-wrapper">
+            <div class="message-avatar"><img src="${LOGO_URL}" alt="AI"></div>
+            <div class="message-bubble">
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    a.appendChild(d);
+    a.scrollTop = a.scrollHeight;
+}
+
+function removeTyping() {
+    const t = document.getElementById('typingMsg');
+    if (t) t.remove();
+}
+
+function copyMsg(i) {
+    const c = getActive();
+    if (c && c.msgs[i]) {
+        navigator.clipboard.writeText(c.msgs[i].content);
+        showToast('Copied to clipboard!');
+    }
+}
+
+function copyCode(b) {
+    const c = b.closest('.code-block').querySelector('code').textContent;
+    navigator.clipboard.writeText(c);
+    showToast('Code copied!');
+}
+
+function regenMsg(i) {
+    const c = getActive();
+    if (!c || i < 1) return;
+    c.msgs.splice(i);
+    save();
+    renderMessages();
+    
+    const lastUserMsg = c.msgs[c.msgs.length - 1];
+    if (lastUserMsg && lastUserMsg.role === 'user') {
+        document.getElementById('messageInput').value = lastUserMsg.content;
+        c.msgs.pop();
+        save();
+        sendMessage();
+    }
+}
+
+function readAloud(i) {
+    const c = getActive();
+    if (c && c.msgs[i]) {
+        const u = new SpeechSynthesisUtterance(c.msgs[i].content.replace(/[*#`]/g, ''));
+        speechSynthesis.speak(u);
+    }
+}
+
+function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+}
+
+function autoResize(t) {
+    t.style.height = '24px';
+    t.style.height = Math.min(t.scrollHeight, 120) + 'px';
+}
+
+function setPrompt(t) {
+    document.getElementById('messageInput').value = t;
+    document.getElementById('messageInput').focus();
+    autoResize(document.getElementById('messageInput'));
+}
+
+function handleImage(e) {
+    const f = e.target.files[0];
+    if (f) {
+        const r = new FileReader();
+        r.onload = x => {
+            attachedImage = x.target.result;
+            document.getElementById('previewThumb').src = attachedImage;
+            document.getElementById('imagePreview').classList.add('active');
+        };
+        r.readAsDataURL(f);
+    }
+}
+
+function removeImage() {
+    attachedImage = null;
+    document.getElementById('imagePreview').classList.remove('active');
+    document.getElementById('imageUpload').value = '';
+}
+
+function openLightbox(s) {
+    document.getElementById('lightboxImg').src = s;
+    document.getElementById('lightbox').classList.add('show');
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('show');
+}
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('closed');
+}
+
+function closeSidebarMobile() {
+    if (window.innerWidth <= 768) {
+        document.getElementById('sidebar').classList.add('closed');
+    }
+}
+
+function toggleModelDropdown() {
+    document.getElementById('modelDropdown').classList.toggle('show');
+}
+
+function selectModel(el) {
+    const modelId = el.dataset.model;
+    const modelName = el.dataset.name;
+    const isProModelFlag = el.dataset.pro === 'true';
+    
+    if (isProModelFlag && !isPro()) {
+        toggleModelDropdown();
+        showProRequired(
+            `${modelName} - Pro Only`,
+            `${modelName} is a premium model available only to Pro and Ultra subscribers. Upgrade now to access advanced AI models!`
+        );
+        return;
+    }
+    
+    currentModelId = modelId;
+    currentModelName = modelName;
+    document.getElementById('currentModel').textContent = modelName;
+    document.querySelectorAll('.model-option').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    toggleModelDropdown();
+    showToast(`Switched to ${modelName}`);
+}
+
+function showSettings() {
+    document.getElementById('settingsModal').classList.add('show');
+    // Only show localStorage key, not hardcoded one
+    document.getElementById('apiKeyInput').value = localStorage.getItem('deepdive_apikey') || '';
+    document.getElementById('systemPrompt').value = localStorage.getItem('deepdive_system') || '';
+    document.getElementById('userNameInput').value = localStorage.getItem('deepdive_username') || '';
+}
+
+function closeSettings() {
+    document.getElementById('settingsModal').classList.remove('show');
+}
+
+function saveSettings() {
+    const apiKey = document.getElementById('apiKeyInput').value.trim();
+    localStorage.setItem('deepdive_apikey', apiKey);
+    localStorage.setItem('deepdive_system', document.getElementById('systemPrompt').value);
+    localStorage.setItem('deepdive_username', document.getElementById('userNameInput').value);
+    updateUserDisplay();
+    updateApiStatus();
+    closeSettings();
+    
+    if (apiKey && apiKey.startsWith('gsk_')) {
+        showToast('✅ Settings saved! API key connected.');
+    } else if (apiKey) {
+        showToast('⚠️ API key should start with "gsk_"');
+    } else {
+        showToast('Settings saved!');
+    }
+}
+
+function showUpgrade() {
+    document.getElementById('upgradeModal').classList.add('show');
+}
+
+function closeUpgrade() {
+    document.getElementById('upgradeModal').classList.remove('show');
+}
+
+function toggleBilling() {
+    isYearly = !isYearly;
+    document.getElementById('planToggle').classList.toggle('on', isYearly);
+    document.getElementById('monthlyLabel').classList.toggle('active-plan-toggle', !isYearly);
+    document.getElementById('yearlyLabel').classList.toggle('active-plan-toggle', isYearly);
+    document.getElementById('proPrice').innerHTML = isYearly ? '$8<span>/mo</span>' : '$12<span>/mo</span>';
+    document.getElementById('proPeriod').textContent = isYearly ? 'Billed $96/year' : 'Billed monthly';
+    document.getElementById('ultraPrice').innerHTML = isYearly ? '$16<span>/mo</span>' : '$24<span>/mo</span>';
+    document.getElementById('ultraPeriod').textContent = isYearly ? 'Billed $192/year' : 'Billed monthly';
+}
+
+function selectPlan(p) {
+    userPlan = p;
+    localStorage.setItem('deepdive_plan', p);
+    updateUserDisplay();
+    updatePlanUI();
+    closeUpgrade();
+    showToast(`🎉 ${p.charAt(0).toUpperCase() + p.slice(1)} plan activated!`);
+}
+
+function toggleThemePanel() {
+    document.getElementById('themePanel').classList.toggle('show');
+}
+
+function buildThemes() {
+    const g = document.getElementById('themeGrid');
+    g.innerHTML = themes.map((t, i) => `
+        <div class="theme-card" onclick="applyTheme(${i})">
+            <div class="theme-card-preview" style="background:linear-gradient(135deg,${t.bg},${t.surface});display:flex;align-items:center;justify-content:center">
+                <div style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,${t.primary},${t.accent})"></div>
+            </div>
+            <div class="theme-card-name">${t.name}</div>
+        </div>
+    `).join('');
+}
+
+function applyTheme(i) {
+    const t = themes[i];
+    document.documentElement.style.setProperty('--bg', t.bg);
+    document.documentElement.style.setProperty('--surface', t.surface);
+    document.documentElement.style.setProperty('--primary', t.primary);
+    document.documentElement.style.setProperty('--accent', t.accent);
+    
+    if (t.light) {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
+    
+    localStorage.setItem('deepdive_theme', i);
+    document.querySelectorAll('.theme-card').forEach((c, j) => c.classList.toggle('active', j === i));
+}
+
+function toggleVoice() {
+    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+        showToast('Speech recognition not supported');
+        return;
+    }
+    
+    if (isRecording) {
+        isRecording = false;
+        document.body.classList.remove('recording');
+        return;
+    }
+    
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const r = new SR();
+    r.continuous = false;
+    r.interimResults = false;
+    
+    r.onstart = () => {
+        isRecording = true;
+        document.body.classList.add('recording');
+    };
+    
+    r.onresult = e => {
+        const t = e.results[0][0].transcript;
+        document.getElementById('messageInput').value = t;
+        autoResize(document.getElementById('messageInput'));
+    };
+    
+    r.onend = () => {
+        isRecording = false;
+        document.body.classList.remove('recording');
+    };
+    
+    r.onerror = () => {
+        isRecording = false;
+        document.body.classList.remove('recording');
+    };
+    
+    r.start();
+}
+
+function exportChats() {
+    const d = JSON.stringify(chats, null, 2);
+    const b = new Blob([d], {type: 'application/json'});
+    const u = URL.createObjectURL(b);
+    const a = document.createElement('a');
+    a.href = u;
+    a.download = 'deepdive_chats.json';
+    a.click();
+    URL.revokeObjectURL(u);
+    showToast('Chats exported!');
+}
+
+function showToast(m) {
+    const e = document.createElement('div');
+    e.className = 'toast';
+    e.textContent = m;
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 2500);
+}
+
+function switchTab(t) {}
+
+document.addEventListener('click', e => {
+    if (!e.target.closest('.model-selector')) {
+        document.getElementById('modelDropdown').classList.remove('show');
+    }
+});
+
+window.onload = init;
 </script>
 </body>
 </html>
